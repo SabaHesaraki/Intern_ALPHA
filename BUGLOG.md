@@ -1,21 +1,25 @@
-Bug Log - Week 1 / Day 1
+# Bug Log - Day 2
 
-Bug 1: to_binary(0) is empty
-- Problem: When I ran to_binary(0), it gave nothing.
-- Cause: The loop condition was n > 1, so it skipped 0 and 1.
-- Fix: Handled n == 0 right at the start and changed the loop to while n > 0.
+## Bug 1: Report file overwritten
+- **Symptom:** Only the last line appeared in report.txt; previous lines were lost.
+- **Cause:** Using single redirection `>` which overwrites the file.
+- **Fix:** Used `>` only for the first line and `>>` for following lines to append data.
+- **Lesson:** `>` replaces file content; `>>` appends to it.
 
-Bug 2: to_binary(72) is only 7 bits
-- Problem: Number 72 printed as 1001000 instead of 8 bits.
-- Cause: The loop stopped too early and lost the last bit, plus no padding.
-- Fix: Fixed the loop condition and used .zfill(8) to make it 8 bits.
+## Bug 2: Space in path caused errors
+- **Symptom:** Errors like `No such file` when file paths had spaces.
+- **Cause:** Unquoted variable `$LOG` split into multiple arguments (word splitting).
+- **Fix:** Put double quotes around variables: `"$LOG"`.
+- **Lesson:** Always quote path variables to handle spaces correctly.
 
-Bug 3: char_count counts bytes
-- Problem: For the Persian word سلام, char_count returned 8 characters (which is the byte size).
-- Cause: The function was using len(text.encode("utf-8")).
-- Fix: Changed it to just len(text).
+## Bug 3: Exit code overwritten by echo
+- **Symptom:** Payment failure alert always printed, even when tests passed.
+- **Cause:** The `echo` command ran between `grep` and `if [ $? -eq 0 ]`, changing `$?`.
+- **Fix:** Put the `grep` command directly inside the `if` condition.
+- **Lesson:** Check `$?` immediately or use the command directly in the condition.
 
-Bug 4: wrong path on Linux
-- Problem: It created a weird file named notes\binary.md in the main folder instead of inside the notes folder.
-- Cause: Using hardcoded Windows backslash in note_path.
-- Fix: Replaced it with os.path.join(folder, file_name).
+## Bug 4: Wrong sorting order for top users
+- **Symptom:** Least active users showed up first instead of top users.
+- **Cause:** Default `sort -n` sorts in ascending order.
+- **Fix:** Changed it to `sort -nr` for descending (reverse) numeric order.
+- **Lesson:** Use `-r` with sort to get highest values first.
