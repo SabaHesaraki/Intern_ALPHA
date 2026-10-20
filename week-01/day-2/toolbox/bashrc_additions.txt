@@ -1,0 +1,6 @@
+export ALPHA_HOME="$HOME/code/intern-alpha"
+export PATH="$HOME/bin:$PATH"
+
+alias ll='ls -la'
+alias ..='cd ..'
+alias gs='git status'

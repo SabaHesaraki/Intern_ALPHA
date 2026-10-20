@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+
+week="$1"
+day="$2"
+target="$HOME/code/intern-alpha/week-$week/day-$day"
+
+mkdir -p "$target"
+echo "# Week $week · Day $day" > "$target/README.md"
+echo "created $target"
