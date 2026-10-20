@@ -1,0 +1,9 @@
+2026-10-21 10:02:15 WARNING user=ali high memory usage detected
+2026-10-21 10:04:22 ERROR user=reza database connection failed
+2026-10-21 10:08:19 ERROR user=reza invalid authentication token
+2026-10-21 10:11:05 WARNING user=reza rate limit exceeded
+2026-10-21 10:12:12 ERROR user=sara failed to upload file
+2026-10-21 10:14:00 WARNING user=ali slow query execution
+2026-10-21 10:17:45 ERROR user=ali disk quota reached
+2026-10-21 10:18:20 WARNING user=sara password expiring soon
+2026-10-21 10:20:15 ERROR user=reza unauthorized access attempt
