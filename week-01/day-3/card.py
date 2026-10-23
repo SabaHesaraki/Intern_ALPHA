@@ -3,7 +3,7 @@
 name = "Saba"
 track = "ALPHA - Agentic AI"
 city = "Tehran"
-motto = "Keep learning and building."
+motto = "Small commits , big progress.."
 
 width = 44
 
