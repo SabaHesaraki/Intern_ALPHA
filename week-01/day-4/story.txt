@@ -2,3 +2,4 @@ An agent started a journey.
 It learned to use the terminal.
 It used Git to save its work.
 Each commit saved a new step.
+The agent was ready to learn more.
