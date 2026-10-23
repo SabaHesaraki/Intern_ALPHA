@@ -1,1 +1,2 @@
 An agent started a journey.
+It learned to use the terminal.
