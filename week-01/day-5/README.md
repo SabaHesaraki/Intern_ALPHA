@@ -18,3 +18,16 @@
 | Divide by 60 | `minutes` / `seconds` | `33` / `20` | Get minutes and seconds |
 | Result | - | `2 days, 07:33:20` | Final formatted time |
 
+## Task 01.5.C: Text Lab
+- File: `text_lab.py`
+- Description: Analyzes a given sentence (counts characters, words, makes upper/reversed text, counts letters, creates a slug, finds first/last words, and checks for python).
+
+### Testing with a Persian Sentence ("سلام دنیا خوش آمدید"):
+- **chars (with spaces):** 20
+- **chars (no spaces):** 17
+- **words:** 3
+- **upper:** سلام دنیا خوش آمدید (Persian letters do not change)
+- **reversed:** دیدمآ خوش انید دنیا ملاس (Characters reversed)
+- **first / last word:** سلام / آمدید
+- **Crash Test:** Passed successfully with no errors!
+
