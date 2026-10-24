@@ -1,0 +1,20 @@
+# Day 05 - Python Basics
+
+## Task 01.5.A: BMI & Water Calculator
+- File: `health.py`
+- Description: Calculates user BMI and daily water needed based on weight and height.
+
+## Task 01.5.B: Time Analyzer
+- File: `seconds.py`
+- Description: Changes total seconds into days, hours, minutes, and seconds using `divmod`.
+
+### Trace Table for Input `200000` seconds:
+
+| Step | Variable | Value | Description |
+| :--- | :--- | :--- | :--- |
+| Input | `total_seconds` | `200000` | User enters seconds |
+| Divide by 86400 | `days` / `rest` | `2` / `27200` | Get days and rest |
+| Divide by 3600 | `hours` / `rest` | `7` / `2000` | Get hours and rest |
+| Divide by 60 | `minutes` / `seconds` | `33` / `20` | Get minutes and seconds |
+| Result | - | `2 days, 07:33:20` | Final formatted time |
+
