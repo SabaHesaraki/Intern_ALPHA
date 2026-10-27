@@ -1,0 +1,30 @@
+  733  nano toolkit.py
+  734  uv run toolkit.py
+  735  nano toolkit.py
+  736  uv run toolkit.py
+  737  touch TESTING.md
+  738  nano TESTING.md
+  739  touch README.md
+  740  nano README.md
+  741  git add toolkit.py TESTING.md README.md
+  742  git commit -m "project-01: complete terminal-toolkit with all features and documentation"
+  743  git push -u origin main 
+  744  cd ..
+  745  mkdir -p ~/drill/w01
+  746  cd ~/drill/w01
+  747  uv init --vcs none
+  748  cat << 'EOF' > main.py
+import sys
+print("My Python Name and Version:")
+print(sys.version)
+EOF
+
+  749  python main.py
+  750  python3 main.py
+  751  git init
+  752  echo -e ".venv/\n__pycache__/\n.DS_Store" > .gitignore
+  753  git add .
+  754  git commit -m "feat(week-01): initialize drill-a environment"
+  755  git log --oneline
+  756  mkdir -p week-01/day-7
+  757  history | tail -n 30 > week-01/day-7/drill_a.txt
