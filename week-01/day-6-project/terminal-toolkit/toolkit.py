@@ -1,7 +1,5 @@
-# toolkit.py - terminal-toolkit: a tiny multi-tool CLI
-
 APP_NAME = "terminal-toolkit"
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 LINE = "=" * 40
 
 def main():
@@ -53,20 +51,24 @@ def main():
                 tip_percent = float(input("Tip percentage (e.g. 15): "))
                 people = int(input("Number of people: "))
 
-                tip_amount = bill * (tip_percent / 100)
-                total = bill + tip_amount
-                per_person = total / people
+                if bill < 0:
+                    print("Error: Bill amount cannot be negative.")
+                elif not 0 <= tip_percent <= 100:
+                    print("Error: Tip percentage must be between 0 and 100.")
+                elif people <= 0:
+                    print("Error: Number of people must be greater than zero.")
+                else:
+                    tip_amount = bill * (tip_percent / 100)
+                    total = bill + tip_amount
+                    per_person = total / people
 
-                print("-" * 20)
-                print(f"Tip: ${tip_amount:.2f}")
-                print(f"Total: ${total:.2f}")
-                print(f"Each person pays: ${per_person:.2f}")
-                print("-" * 20)
+                    print("-" * 20)
+                    print(f"Tip: ${tip_amount:.2f}")
+                    print(f"Total: ${total:.2f}")
+                    print(f"Each person pays: ${per_person:.2f}")
+                    print("-" * 20)
             except ValueError:
                 print("Error: Please enter valid numbers.")
-            except ZeroDivisionError:
-                print("Error: Number of people must be greater than zero.")
-            
 
         elif choice == "3":
             print("-- Text stats --")
