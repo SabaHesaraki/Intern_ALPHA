@@ -1,23 +1,4 @@
 try:
-    bill = float(input("bill: "))
-    tip_percent = int(input("tip percent: "))
-    people = int(input("people: "))
-
-    if bill < 0:
-        print("bill cannot be negative")
-    elif not 0 <= tip_percent <= 100:
-        print("tip percent must be between 0 and 100")
-    elif people <= 0:
-        print("people must be at least 1")
-    else:
-        tip = bill * tip_percent / 100
-        total = bill + tip
-        share = total / people
-        label = "person" if people == 1 else "people"
-        print(f"tip    : {tip:>14,.2f}")
-        print(f"total  : {total:>14,.2f}")
-        print(f"each of {people} {label}: {share:,.2f}")
-
     weight = float(input("Weight (kg): "))
     height = float(input("Height (cm): "))
 
