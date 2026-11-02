@@ -1,95 +1,108 @@
-APP_NAME = "terminal-toolkit"
-VERSION = "0.2.0"
-LINE = "=" * 40
+"""Terminal Toolkit project refactored into pure and modular functions."""
 
-def main():
-    print(LINE)
-    print(f"{APP_NAME + ' v' + VERSION:^40}")
-    print(LINE)
 
+def show_menu() -> None:
+    """Displays the main menu options to the user."""
+    print("\n--- Terminal Toolkit ---")
+    print("1. Converter")
+    print("2. Tip Calculator")
+    print("3. Text Stats")
+    print("4. Exit")
+
+
+def ask_float(prompt: str) -> float:
+    """Prompts the user for a floating-point number."""
     while True:
-        print()
-        print("[1] Unit converter")
-        print("[2] Tip calculator")
-        print("[3] Text stats")
-        print("[q] Quit")
-        choice = input("> ").strip().lower()
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
 
-        if choice == "1":
-            print("-- Unit converter --")
-            print("Options: c2f, f2c, km2mi, mi2km, kg2lb, lb2kg")
-            kind = input("Conversion type: ").strip().lower()
-            try:
-                value = float(input("Value to convert: "))
-                if kind == "c2f":
-                    result = value * 9 / 5 + 32
-                    print(f"{value:.2f} C = {result:.2f} F")
-                elif kind == "f2c":
-                    result = (value - 32) * 5 / 9
-                    print(f"{value:.2f} F = {result:.2f} C")
-                elif kind == "km2mi":
-                    result = value * 0.621371
-                    print(f"{value:.2f} km = {result:.2f} mi")
-                elif kind == "mi2km":
-                    result = value / 0.621371
-                    print(f"{value:.2f} mi = {result:.2f} km")
-                elif kind == "kg2lb":
-                    result = value * 2.20462
-                    print(f"{value:.2f} kg = {result:.2f} lb")
-                elif kind == "lb2kg":
-                    result = value / 2.20462
-                    print(f"{value:.2f} lb = {result:.2f} kg")
-                else:
-                    print(f"Unknown conversion: {kind}")
-            except ValueError:
-                print("Error: Please enter a valid number.")
 
-        elif choice == "2":
-            print("-- Tip calculator --")
-            try:
-                bill = float(input("Bill amount: "))
-                tip_percent = float(input("Tip percentage (e.g. 15): "))
-                people = int(input("Number of people: "))
+def ask_int(prompt: str, low: int, high: int) -> int:
+    """Prompts the user for an integer within a specific range."""
+    while True:
+        try:
+            val = int(input(prompt))
+            if low <= val <= high:
+                return val
+            print(f"Please enter a number between {low} and {high}.")
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
 
-                if bill < 0:
-                    print("Error: Bill amount cannot be negative.")
-                elif not 0 <= tip_percent <= 100:
-                    print("Error: Tip percentage must be between 0 and 100.")
-                elif people <= 0:
-                    print("Error: Number of people must be greater than zero.")
-                else:
-                    tip_amount = bill * (tip_percent / 100)
-                    total = bill + tip_amount
-                    per_person = total / people
 
-                    print("-" * 20)
-                    print(f"Tip: ${tip_amount:.2f}")
-                    print(f"Total: ${total:.2f}")
-                    print(f"Each person pays: ${per_person:.2f}")
-                    print("-" * 20)
-            except ValueError:
-                print("Error: Please enter valid numbers.")
+def run_converter() -> None:
+    """Handles the unit conversion feature."""
+    print("\n[Converter]")
+    val = ask_float("Enter value to convert (C to F): ")
+    result = val * 9 / 5 + 32
+    print(f"Result: {result:.2f} °F")
 
-        elif choice == "3":
-            print("-- Text stats --")
-            text = input("Enter your text: ").strip()
-            if not text:
-                print("Error: The text cannot be empty.")
-            else:
-                char_count = len(text)
-                char_count_no_spaces = len(text.replace(" ", ""))
-                word_count = len(text.split())
 
-                print(f"Characters (with spaces): {char_count}")
-                print(f"Characters (no spaces):   {char_count_no_spaces}")
-                print(f"Words:                    {word_count}")
+def tip_breakdown(bill: float, percent: int, people: int) -> tuple[float, float, float] | None:
+    """Calculates tip amount, total bill, and share per person.
 
-        elif choice == "q":
-            print("Goodbye from terminal-toolkit. Keep shipping!")
+    Pure function.
+    """
+    if people <= 0 or bill < 0:
+        return None
+    tip_amount = bill * (percent / 100)
+    total_bill = bill + tip_amount
+    per_person = total_bill / people
+    return tip_amount, total_bill, per_person
+
+
+def run_tip_calculator() -> None:
+    """Handles the tip calculator feature."""
+    print("\n[Tip Calculator]")
+    bill = ask_float("Enter bill amount: ")
+    percent = ask_int("Enter tip percentage (e.g., 10, 15, 20): ", 0, 100)
+    people = ask_int("Enter number of people: ", 1, 1000)
+
+    res = tip_breakdown(bill, percent, people)
+    if res:
+        tip, total, share = res
+        print(f"Tip Amount: {tip:.2f}")
+        print(f"Total Bill: {total:.2f}")
+        print(f"Share Per Person: {share:.2f}")
+
+
+def text_stats(text: str) -> dict[str, int]:
+    """Analyzes text and returns statistics (char count, word count, etc.).
+
+    Pure function.
+    """
+    words = text.split()
+    return {
+        "chars": len(text),
+        "words": len(words),
+    }
+
+
+def run_text_stats() -> None:
+    """Handles the text statistics feature."""
+    print("\n[Text Stats]")
+    text = input("Enter your text: ")
+    stats = text_stats(text)
+    print(f"Characters: {stats['chars']}")
+    print(f"Words: {stats['words']}")
+
+
+def main() -> None:
+    """Main application loop."""
+    while True:
+        show_menu()
+        choice = ask_int("Choose an option (1-4): ", 1, 4)
+        if choice == 1:
+            run_converter()
+        elif choice == 2:
+            run_tip_calculator()
+        elif choice == 3:
+            run_text_stats()
+        elif choice == 4:
+            print("Goodbye!")
             break
 
-        else:
-            print(f"'{choice}' is not a valid option.")
 
 if __name__ == "__main__":
     main()
