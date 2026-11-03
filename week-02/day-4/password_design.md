@@ -14,29 +14,34 @@ The goal is to create a robust password validator function in Python that checks
 ---
 
 ## 2. Decomposition
+
 ```mermaid
 graph TD
-A[Start: check_password pw] --> B{Length >= 10?}
-B -- No --> C[Add length error]
-B -- Yes --> D{Has Uppercase?}
-D -- No --> E[Add uppercase error]
-D -- Yes --> F{Has Lowercase?}
-F -- No --> G[Add lowercase error]
-F -- Yes --> H{Has Digit?}
-H -- No --> I[Add digit error]
-H -- Yes --> J{Has Special Char?}
-J -- No --> K[Add special char error]
-J -- Yes --> L{Contains 'password'?}
-L -- Yes --> M[Add forbidden word error]
-L -- No --> N{Any errors collected?}
-C --> D
-E --> F
-G --> H
-I --> J
-K --> L
-M --> N
-N -- Yes --> O[Return errors joined by '; ']
-N -- No --> P[Return 'strong']
+    A[Start: check_password pw] --> B{Length >= 10?}
+    B -- No --> C[Add length error]
+    B -- Yes --> D{Has Uppercase?}
+    D -- No --> E[Add uppercase error]
+    D -- Yes --> F{Has Lowercase?}
+    F -- No --> G[Add lowercase error]
+    F -- Yes --> H{Has Digit?}
+    H -- No --> I[Add digit error]
+    H -- Yes --> J{Has Special Char?}
+    J -- No --> K[Add special char error]
+    J -- Yes --> L{Contains 'password'?}
+    L -- Yes --> M[Add forbidden word error]
+    L -- No --> N{Any errors collected?}
+    C --> D
+    E --> F
+    G --> H
+    I --> J
+    K --> L
+    M --> N
+    N -- Yes --> O[Return errors joined by '; ']
+    N -- No --> P[Return 'strong']
+
+
+
+
 ## 3.Pseudocode
 FUNCTION check_password(pw):
 errors = []
